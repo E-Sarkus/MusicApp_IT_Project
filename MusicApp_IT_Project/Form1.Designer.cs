@@ -35,7 +35,7 @@
             flowLayoutPanel2 = new FlowLayoutPanel();
             flowLayoutPanel3 = new FlowLayoutPanel();
             playlistSelectedLabel = new Label();
-            flowLayoutPanel4 = new FlowLayoutPanel();
+            uploadedMusicList = new FlowLayoutPanel();
             uploadedMusicLabel = new Label();
             panel1 = new Panel();
             materialSlider1 = new MaterialSkin.Controls.MaterialSlider();
@@ -47,9 +47,6 @@
             musicPlaying = new Label();
             materialButton1 = new MaterialSkin.Controls.MaterialButton();
             materialButton2 = new MaterialSkin.Controls.MaterialButton();
-            flowLayoutPanel1.SuspendLayout();
-            flowLayoutPanel3.SuspendLayout();
-            flowLayoutPanel4.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -57,10 +54,9 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.BackColor = Color.FromArgb(35, 35, 36);
-            flowLayoutPanel1.Controls.Add(lovedLabel);
-            flowLayoutPanel1.Location = new Point(12, 25);
+            flowLayoutPanel1.Location = new Point(12, 72);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(346, 991);
+            flowLayoutPanel1.Size = new Size(346, 957);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // lovedLabel
@@ -69,7 +65,7 @@
             lovedLabel.BackColor = Color.Transparent;
             lovedLabel.Font = new Font("Montserrat", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lovedLabel.ForeColor = Color.White;
-            lovedLabel.Location = new Point(3, 0);
+            lovedLabel.Location = new Point(12, 25);
             lovedLabel.Name = "lovedLabel";
             lovedLabel.Size = new Size(123, 49);
             lovedLabel.TabIndex = 0;
@@ -99,8 +95,7 @@
             // flowLayoutPanel3
             // 
             flowLayoutPanel3.BackColor = Color.FromArgb(35, 35, 36);
-            flowLayoutPanel3.Controls.Add(playlistSelectedLabel);
-            flowLayoutPanel3.Location = new Point(376, 315);
+            flowLayoutPanel3.Location = new Point(376, 345);
             flowLayoutPanel3.Name = "flowLayoutPanel3";
             flowLayoutPanel3.Size = new Size(1516, 213);
             flowLayoutPanel3.TabIndex = 3;
@@ -111,21 +106,24 @@
             playlistSelectedLabel.BackColor = Color.Transparent;
             playlistSelectedLabel.Font = new Font("Montserrat", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             playlistSelectedLabel.ForeColor = Color.White;
-            playlistSelectedLabel.Location = new Point(3, 0);
+            playlistSelectedLabel.Location = new Point(376, 293);
             playlistSelectedLabel.Name = "playlistSelectedLabel";
             playlistSelectedLabel.Size = new Size(354, 49);
             playlistSelectedLabel.TabIndex = 6;
             playlistSelectedLabel.Text = "No Playlist Selected";
             playlistSelectedLabel.TextAlign = ContentAlignment.TopCenter;
             // 
-            // flowLayoutPanel4
+            // uploadedMusicList
             // 
-            flowLayoutPanel4.BackColor = Color.FromArgb(35, 35, 36);
-            flowLayoutPanel4.Controls.Add(uploadedMusicLabel);
-            flowLayoutPanel4.Location = new Point(376, 559);
-            flowLayoutPanel4.Name = "flowLayoutPanel4";
-            flowLayoutPanel4.Size = new Size(1516, 213);
-            flowLayoutPanel4.TabIndex = 4;
+            uploadedMusicList.AutoScroll = true;
+            uploadedMusicList.BackColor = Color.FromArgb(35, 35, 36);
+            uploadedMusicList.FlowDirection = FlowDirection.TopDown;
+            uploadedMusicList.Font = new Font("Montserrat", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            uploadedMusicList.ForeColor = Color.FromArgb(48, 207, 255);
+            uploadedMusicList.Location = new Point(376, 613);
+            uploadedMusicList.Name = "uploadedMusicList";
+            uploadedMusicList.Size = new Size(1516, 213);
+            uploadedMusicList.TabIndex = 4;
             // 
             // uploadedMusicLabel
             // 
@@ -133,7 +131,7 @@
             uploadedMusicLabel.BackColor = Color.Transparent;
             uploadedMusicLabel.Font = new Font("Montserrat", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             uploadedMusicLabel.ForeColor = Color.White;
-            uploadedMusicLabel.Location = new Point(3, 0);
+            uploadedMusicLabel.Location = new Point(376, 561);
             uploadedMusicLabel.Name = "uploadedMusicLabel";
             uploadedMusicLabel.Size = new Size(292, 49);
             uploadedMusicLabel.TabIndex = 5;
@@ -155,6 +153,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1121, 118);
             panel1.TabIndex = 5;
+            panel1.Visible = false;
             // 
             // materialSlider1
             // 
@@ -266,6 +265,7 @@
             materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             materialButton1.UseAccentColor = false;
             materialButton1.UseVisualStyleBackColor = true;
+            materialButton1.Click += materialButton1_Click;
             // 
             // materialButton2
             // 
@@ -294,10 +294,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(24, 23, 26);
             ClientSize = new Size(1904, 1041);
+            Controls.Add(lovedLabel);
+            Controls.Add(playlistSelectedLabel);
+            Controls.Add(uploadedMusicLabel);
             Controls.Add(materialButton2);
             Controls.Add(materialButton1);
             Controls.Add(panel1);
-            Controls.Add(flowLayoutPanel4);
+            Controls.Add(uploadedMusicList);
             Controls.Add(flowLayoutPanel3);
             Controls.Add(flowLayoutPanel2);
             Controls.Add(label1);
@@ -305,12 +308,6 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Form1";
             Text = "Form1";
-            flowLayoutPanel1.ResumeLayout(false);
-            flowLayoutPanel1.PerformLayout();
-            flowLayoutPanel3.ResumeLayout(false);
-            flowLayoutPanel3.PerformLayout();
-            flowLayoutPanel4.ResumeLayout(false);
-            flowLayoutPanel4.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -326,7 +323,7 @@
         private FlowLayoutPanel flowLayoutPanel2;
         private FlowLayoutPanel flowLayoutPanel3;
         private Label playlistSelectedLabel;
-        private FlowLayoutPanel flowLayoutPanel4;
+        private FlowLayoutPanel uploadedMusicList;
         private Label uploadedMusicLabel;
         private Panel panel1;
         private Label artistPlaying;
