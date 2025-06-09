@@ -10,16 +10,37 @@
 
   <ItemGroup>
     <None Remove="Resources\defaultAlbumCover.png" />
+    <None Remove="Resources\pause_icon.png" />
+    <None Remove="Resources\play_icon.png" />
+    <None Remove="Resources\plusIcon.png" />
+    <None Remove="Resources\red_heart.png" />
+    <None Remove="Resources\white_heart.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Resources\defaultAlbumCover.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\pause_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\play_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\plusIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\red_heart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\white_heart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MaterialSkin.2" Version="2.3.1" />
+    <PackageReference Include="NAudio" Version="2.2.1" />
     <PackageReference Include="TagLibSharp" Version="2.3.0" />
   </ItemGroup>
 
