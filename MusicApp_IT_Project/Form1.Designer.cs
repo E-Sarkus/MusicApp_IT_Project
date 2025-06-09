@@ -48,9 +48,11 @@
             musicPlaying = new Label();
             musicProgressBar = new MaterialSkin.Controls.MaterialProgressBar();
             materialButton1 = new MaterialSkin.Controls.MaterialButton();
+            pictureBox1 = new PictureBox();
             musicPlayerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)heartIcon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)musicPictureCover).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lovedLayout
@@ -313,12 +315,23 @@
             materialButton1.UseVisualStyleBackColor = true;
             materialButton1.Click += materialButton1_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(12, 852);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(352, 111);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 9;
+            pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(24, 23, 26);
             ClientSize = new Size(1643, 975);
+            Controls.Add(pictureBox1);
             Controls.Add(musicProgressBar);
             Controls.Add(lovedLabel);
             Controls.Add(playlistSelectedLabel);
@@ -339,6 +352,7 @@
             musicPlayerPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)heartIcon).EndInit();
             ((System.ComponentModel.ISupportInitialize)musicPictureCover).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -364,5 +378,6 @@
         private MaterialSkin.Controls.MaterialButton materialButton1;
         private MaterialSkin.Controls.MaterialFloatingActionButton playStopBtn;
         private PictureBox heartIcon;
+        private PictureBox pictureBox1;
     }
 }

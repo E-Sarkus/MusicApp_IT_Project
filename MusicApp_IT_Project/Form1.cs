@@ -38,6 +38,12 @@ namespace MusicApp_IT_Project
         private List<string> lovedSongPaths = new List<string>();
         private int currentSongIndex = -1;
 
+        ToolStripMenuItem uploadToPlaylistMenuItem = new ToolStripMenuItem("Upload to Playlist");
+        ToolStripMenuItem deleteItem = new ToolStripMenuItem("Delete");
+        ToolStripMenuItem deleteItemPlaylist = new ToolStripMenuItem("Delete");
+
+        string playlistFolder;
+
 
         public Form1()
         {
@@ -71,12 +77,11 @@ namespace MusicApp_IT_Project
             materialButton1.Cursor = Cursors.Hand;
             musicProgressBar.Cursor = Cursors.Hand;
 
-            ToolStripMenuItem uploadToPlaylistMenuItem = new ToolStripMenuItem("Upload to Playlist");
-            ToolStripMenuItem deleteItem = new ToolStripMenuItem("Delete");
-            ToolStripMenuItem deleteItemPlaylist = new ToolStripMenuItem("Delete");
 
 
+            uploadToPlaylistMenuItem.DropDownItems.Clear();
             List<string> playlists = GetAllPlaylists();
+
             foreach (var playlist in playlists)
             {
                 ToolStripMenuItem playlistItem = new ToolStripMenuItem(playlist);
@@ -94,6 +99,19 @@ namespace MusicApp_IT_Project
 
 
         }
+
+        private void RefreshPlaylistContextMenu()
+        {
+            uploadToPlaylistMenuItem.DropDownItems.Clear();
+            List<string> playlists = GetAllPlaylists();
+            foreach (var playlist in playlists)
+            {
+                ToolStripMenuItem playlistItem = new ToolStripMenuItem(playlist);
+                playlistItem.Click += UploadToPlaylist_SubMenu_Click;
+                uploadToPlaylistMenuItem.DropDownItems.Add(playlistItem);
+            }
+        }
+
 
 
         private void DeleteSong_Click(object sender, EventArgs e)
@@ -129,6 +147,8 @@ namespace MusicApp_IT_Project
 
         private void DeletePlaylist_Click(object sender, EventArgs e)
         {
+            
+
             if (sender is ToolStripMenuItem menuItem &&
                 menuItem.Owner is ContextMenuStrip menu &&
                 menu.SourceControl is Panel playlistPanel &&
@@ -146,6 +166,13 @@ namespace MusicApp_IT_Project
                         if (Directory.Exists(playlistPath)) Directory.Delete(playlistPath, true);
                         this.playlistPanel.Controls.Remove(playlistPanel);
                         playlistPanel.Dispose();
+
+                        if (playlistSelectedLabel.Text == playlistName)
+                        {
+                            playlistSelectedLabel.Text = "No Playlist Selected";
+                            playlistSelectedList.Controls.Clear();
+                        }
+
                     }
                     catch (Exception ex)
                     {
@@ -153,6 +180,10 @@ namespace MusicApp_IT_Project
                     }
                 }
             }
+
+          
+
+            RefreshPlaylistContextMenu();
         }
 
 
@@ -192,6 +223,7 @@ namespace MusicApp_IT_Project
                         {
                             string destFile = Path.Combine(playlistFolder, Path.GetFileName(songPath));
                             System.IO.File.Copy(songPath, destFile, overwrite: true);
+                            LoadPlaylistSongs(playlistFolder);
                             MessageBox.Show($"Song uploaded to playlist {selectedPlaylist}!");
                         }
                         catch (Exception ex)
@@ -594,6 +626,7 @@ namespace MusicApp_IT_Project
         {
             playlistPanel.Controls.Clear();
             AddCreatePlaylistBlock();
+            RefreshPlaylistContextMenu();
 
             string playlistsDir = Path.Combine(Application.StartupPath, "Playlists");
             if (!Directory.Exists(playlistsDir))
@@ -678,34 +711,8 @@ namespace MusicApp_IT_Project
         }
 
 
-        private void PlaylistBlock_Click(object sender, EventArgs e)
+        private void LoadPlaylistSongs(string playlistFolder)
         {
-
-            Control clickedControl = sender as Control;
-
-            Panel playlistPanel = null;
-            if (clickedControl is Panel panel)
-                playlistPanel = panel;
-            else if (clickedControl?.Parent is Panel parentPanel)
-                playlistPanel = parentPanel;
-
-            if (playlistPanel == null || playlistPanel.Tag is not PlaylistTag tag)
-            {
-                MessageBox.Show("Playlist information not found.");
-                return;
-            }
-
-            string playlistName = tag.PlaylistName;
-            string playlistFolder = tag.PlaylistPath;
-
-            playlistSelectedLabel.Text = playlistName;
-
-            if (!Directory.Exists(playlistFolder))
-            {
-                MessageBox.Show("Playlist folder not found.");
-                return;
-            }
-
             playlistSelectedList.Controls.Clear();
 
             string[] audioExtensions = new[] { ".mp3", ".wav", ".flac", ".aac" };
@@ -747,6 +754,37 @@ namespace MusicApp_IT_Project
                 }
             }
         }
+
+        private void PlaylistBlock_Click(object sender, EventArgs e)
+        {
+            Control clickedControl = sender as Control;
+
+            Panel playlistPanel = null;
+            if (clickedControl is Panel panel)
+                playlistPanel = panel;
+            else if (clickedControl?.Parent is Panel parentPanel)
+                playlistPanel = parentPanel;
+
+            if (playlistPanel == null || playlistPanel.Tag is not PlaylistTag tag)
+            {
+                MessageBox.Show("Playlist information not found.");
+                return;
+            }
+
+            string playlistName = tag.PlaylistName;
+            playlistFolder = tag.PlaylistPath;
+
+            playlistSelectedLabel.Text = playlistName;
+
+            if (!Directory.Exists(playlistFolder))
+            {
+                MessageBox.Show("Playlist folder not found.");
+                return;
+            }
+
+            LoadPlaylistSongs(playlistFolder);
+        }
+
 
 
         private void AddSongsToPlaylist(string filePath, string songName, string artistName, Image albumCover)

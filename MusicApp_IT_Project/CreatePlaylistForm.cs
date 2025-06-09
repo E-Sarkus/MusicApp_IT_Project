@@ -38,6 +38,16 @@ namespace MusicApp_IT_Project
                 MessageBox.Show("Please enter a playlist name.");
                 return;
             }
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Please choose a colour.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("Please choose a colour.");
+                return;
+            }
 
             PlaylistName = textBox1.Text.Trim();
 
