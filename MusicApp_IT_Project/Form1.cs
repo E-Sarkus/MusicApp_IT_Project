@@ -223,7 +223,14 @@ namespace MusicApp_IT_Project
                         {
                             string destFile = Path.Combine(playlistFolder, Path.GetFileName(songPath));
                             System.IO.File.Copy(songPath, destFile, overwrite: true);
-                            LoadPlaylistSongs(playlistFolder);
+
+                            if (playlistSelectedLabel.Text != "No Playlist Selected")
+                            {
+                                
+                                LoadPlaylistSongs(playlistFolder);
+                            }
+                            
+                            
                             MessageBox.Show($"Song uploaded to playlist {selectedPlaylist}!");
                         }
                         catch (Exception ex)
@@ -746,7 +753,9 @@ namespace MusicApp_IT_Project
                         albumCover = Image.FromFile(defaultCoverPath);
                     }
 
-                    AddSongsToPlaylist(songFile, title, artist, albumCover);
+                        AddSongsToPlaylist(songFile, title, artist, albumCover);
+
+                    
                 }
                 catch (Exception ex)
                 {

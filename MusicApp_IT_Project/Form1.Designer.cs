@@ -63,7 +63,7 @@
             lovedLayout.ForeColor = Color.FromArgb(48, 207, 255);
             lovedLayout.Location = new Point(12, 57);
             lovedLayout.Name = "lovedLayout";
-            lovedLayout.Size = new Size(358, 780);
+            lovedLayout.Size = new Size(352, 780);
             lovedLayout.TabIndex = 0;
             lovedLayout.WrapContents = false;
             // 
@@ -86,7 +86,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Montserrat", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(364, -1);
+            label1.Location = new Point(377, -1);
             label1.Name = "label1";
             label1.Size = new Size(162, 49);
             label1.TabIndex = 1;
@@ -118,7 +118,7 @@
             playlistSelectedLabel.BackColor = Color.Transparent;
             playlistSelectedLabel.Font = new Font("Montserrat", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             playlistSelectedLabel.ForeColor = Color.White;
-            playlistSelectedLabel.Location = new Point(376, 282);
+            playlistSelectedLabel.Location = new Point(377, 282);
             playlistSelectedLabel.Name = "playlistSelectedLabel";
             playlistSelectedLabel.Size = new Size(354, 49);
             playlistSelectedLabel.TabIndex = 6;
@@ -143,7 +143,7 @@
             uploadedMusicLabel.BackColor = Color.Transparent;
             uploadedMusicLabel.Font = new Font("Montserrat", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             uploadedMusicLabel.ForeColor = Color.White;
-            uploadedMusicLabel.Location = new Point(377, 561);
+            uploadedMusicLabel.Location = new Point(376, 561);
             uploadedMusicLabel.Name = "uploadedMusicLabel";
             uploadedMusicLabel.Size = new Size(292, 49);
             uploadedMusicLabel.TabIndex = 5;
@@ -318,7 +318,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(12, 852);
+            pictureBox1.Location = new Point(12, 841);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(352, 111);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
