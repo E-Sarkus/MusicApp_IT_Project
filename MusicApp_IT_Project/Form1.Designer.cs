@@ -61,7 +61,7 @@
             lovedLayout.ForeColor = Color.FromArgb(48, 207, 255);
             lovedLayout.Location = new Point(12, 57);
             lovedLayout.Name = "lovedLayout";
-            lovedLayout.Size = new Size(358, 765);
+            lovedLayout.Size = new Size(358, 780);
             lovedLayout.TabIndex = 0;
             lovedLayout.WrapContents = false;
             // 
